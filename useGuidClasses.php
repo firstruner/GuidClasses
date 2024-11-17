@@ -32,6 +32,7 @@ header("Content-Type: text/plain");
 require __DIR__ . '/Core/System/Reflection/Dependencies/Loader.php';
 
 use System\Guid;
+use System\Luid;
 use System\Reflection\Dependencies\Loader;
 
 // Load dependencies
@@ -44,7 +45,27 @@ Loader::Load(
 );
 
 // Use elements
-echo '--- Use Class ---' . PHP_EOL;
+echo '--- Use GUID Class ---' . PHP_EOL;
 
-$my_guid = Guid::NewGuid();
-echo $my_guid;
+for ($i = 0; $i < 10; $i++)
+      echo "Guid Sample : " . Guid::NewGuid() . PHP_EOL;
+
+echo PHP_EOL;
+echo '--- Use LUID Class ---' . PHP_EOL;
+for ($i = 0; $i < 10; $i++)
+      echo "Luid Sample : " . Luid::NewLuid() . PHP_EOL;
+
+echo PHP_EOL;
+echo '--- Use LUID Class With Prefix ---' . PHP_EOL;
+$prefix = "1stFrmks";
+
+for ($i = 0; $i < 10; $i++)
+      echo "Luid Sample : " . Luid::NewLuid($prefix) . PHP_EOL;
+
+
+echo PHP_EOL;
+echo '--- Use LUID Class With Prefix and High Entropy ---' . PHP_EOL;
+$prefix = "1stFrmks-High!Entropy";
+
+for ($i = 0; $i < 10; $i++)
+      echo "Luid Sample : " . Luid::NewLuid($prefix, true) . PHP_EOL;

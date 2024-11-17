@@ -225,6 +225,7 @@ final class PartialElementsCollection implements Iterator
                   ($this->isAbstractClass() ? "abstract " : "") .
                   $this->elements[0]->getHeaderTag() . $this->elements[0]->ElementName . PHP_EOL;
 
+            // $usesArray = [];
             $Uses = "";
             $Extends = "";
             $Implements = "";
@@ -232,11 +233,14 @@ final class PartialElementsCollection implements Iterator
 
             foreach ($this->elements as $partial) {
                   $Uses .= $partial->Tag_File . PHP_EOL . $partial->Uses . PHP_EOL;
+                  // array_push($usesArray, $partial->Tag_File . PHP_EOL . $partial->Uses);
                   $Extends .= $this->extendsCompiler(PartialEnumerations_Element::_Extends, $Extends, $partial);
                   $Implements .= $this->extendsCompiler(PartialEnumerations_Element::_Implements, $Implements, $partial);
                   $Contents .= $partial->Tag_File . PHP_EOL . $partial->Content . PHP_EOL;
             }
 
+            // var_dump(array_unique($usesArray));
+            // $Uses = implode(PHP_EOL, array_unique($usesArray));
             $Uses = str_replace(PartialElementsCollection::UsePartial, "", $Uses);
 
             // Managing php < 8.1
@@ -270,9 +274,6 @@ final class PartialElementsCollection implements Iterator
                   $Uses . PHP_EOL .
                   $ElementName . " " . $Extends . " " . $Implements . PHP_EOL .
                   "{" . PHP_EOL . $Contents . PHP_EOL . "}";
-
-            // if (strpos($finalClass, 'class Guid'))
-            //       var_dump($finalClass);
 
             try {
                   switch ($ElementType) {
