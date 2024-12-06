@@ -1,6 +1,6 @@
 
 # 🛠️ Framework PHP - Guids Classes
-This repository implement a management about Guid/UUID creations.
+This repository implement a management about Guid/UUID and LUID creations.
 In sometimes case, "com_create_guid" function isn't available.
 The Guid class in accordance with the 128 bits norm key (RFC 9562), allow you to create Guid with same function of .Net platform.
 
